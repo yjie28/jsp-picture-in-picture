@@ -1,14 +1,7 @@
-/*
-    logic to be implemented: 
-    maybe better for user to select for the browser to prompt, 
-    if the user selects "cancel", the "start" button should be disabled
-
-*/
-
 const videoElement = document.getElementById('video');
 const startBtn = document.getElementById('start');
 const stopBtn = document.getElementById('stop');
-const reselectBtn = document.getElementById('reselect');
+const selectBtn = document.getElementById('select');
 
 // Prompt to select media stream, pass to video element, then play
 const selectMediaStream = async () => {
@@ -18,9 +11,10 @@ const selectMediaStream = async () => {
     videoElement.onloadedmetadata = () => {
       videoElement.play();
     };
+    selectBtn.hidden = true;
+    startBtn.hidden = false;
   } catch (error) {
     // catch error
-    console.log(error);
   }
 };
 
@@ -44,24 +38,16 @@ const startPIP = async () => {
 const stopPIP = () => {
   stopStreamedVideo(videoElement);
   stopBtn.hidden = true;
-  reselectBtn.hidden = false;
+  selectBtn.hidden = false;
+  // Closes the Picture In Picture window
+  document.exitPictureInPicture();
 };
 
-// Propmpts to select media stream again
-const reselectMediaStream = () => {
-  reselectBtn.hidden = true;
-  stopBtn.hidden = false;
-  selectMediaStream();
-};
+// Select
+selectBtn.addEventListener('click', selectMediaStream);
 
 // Start
 startBtn.addEventListener('click', startPIP);
 
 // Stop
 stopBtn.addEventListener('click', stopPIP);
-
-// Reselect
-reselectBtn.addEventListener('click', reselectMediaStream);
-
-// On Load
-selectMediaStream();

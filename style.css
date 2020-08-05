@@ -33,13 +33,6 @@ body {
   align-items: center;
 }
 
-/* .button-container {
-  border: 2px solid black;
-  padding: 10px;
-  border-radius: 7px;
-  box-shadow: inset 0 20px 4px -19px rgba(255, 255, 255, 0.7);
-} */
-
 #reselect {
   font-size: 15px;
 }
@@ -60,6 +53,7 @@ button {
     0 12px 12px 0 rgba(0, 0, 0, 0.3);
   letter-spacing: 0.2rem;
   transition: all 0.2s;
+  outline: none;
 }
 
 button:hover {
